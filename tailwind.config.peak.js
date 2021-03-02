@@ -14,8 +14,8 @@ module.exports = {
       keyframes: (theme) => ({
         // Add a highlight animation for the highlight utility.
         'highlight': {
-          'from': { boxShadow: 'inset 4px 4px ' + theme('colors.error.600') + ', inset -4px -4px ' + theme('colors.error.600') },
-          'to': { boxShadow: 'inset 8px 8px ' + theme('colors.error.600') + ', inset -8px -8px ' + theme('colors.error.600') },
+          'from': { boxShadow: `inset 4px 4px ${theme('colors.error.600')}, inset -4px -4px ${theme('colors.error.600')}` },
+          'to': { boxShadow: `inset 8px 8px ${theme('colors.error.600')}, inset -8px -8px ${theme('colors.error.600')}` },
         },
       }),
       spacing: {
@@ -51,24 +51,11 @@ module.exports = {
           outline: 'none',
         },
         // Display screen breakpoints in debug environment.
-        'body.debug::before': {
+        '.breakpoint:before': {
           display: 'block',
-          position: 'fixed',
-          zIndex: '99',
-          top: theme('spacing.1'),
-          right: theme('spacing.1'),
-          padding: theme('spacing.1'),
-          border: '1px',
-          borderStyle: 'solid',
-          borderColor: theme('colors.notice.300'),
-          borderRadius: theme('borderRadius.full'),
-          backgroundColor: theme('colors.notice.200'),
-          fontSize: '.5rem',
           color: theme('colors.notice.900'),
           textTransform: 'uppercase',
-          fontWeight: theme('fontWeight.bold'),
           content: '"-"',
-          pointerEvents: 'none',
         },
       })
     }),
@@ -78,7 +65,7 @@ module.exports = {
       const breakpoints = _.map(theme('screens'), (value, key) => {
         return {
           [`@media (min-width: ${value})`]: {
-            'body.debug::before': {
+            '.breakpoint::before': {
               content: `"${key}"`,
             }
           }
@@ -96,8 +83,8 @@ module.exports = {
           marginLeft: 'auto',
           marginRight: 'auto',
           // Use safe-area-inset together with default padding for Apple devices with a notch.
-          paddingLeft: 'calc(env(safe-area-inset-left, 0rem) + ' + theme('padding.8') + ')',
-          paddingRight: 'calc(env(safe-area-inset-right, 0rem) + ' + theme('padding.8') + ')',
+          paddingLeft: `calc(env(safe-area-inset-left, 0rem) + ${theme('padding.8')})`,
+          paddingRight: `calc(env(safe-area-inset-right, 0rem) + ${theme('padding.8')})`,
         },
         // Disable scroll e.g. when a modal is open. Should be used on the <body>
         '.no-scroll': {
@@ -115,8 +102,8 @@ module.exports = {
           // If the last child of the outer grid is full width (e.g. when it has a full width 
           // colored background), give it negative margin bottom to get it flush to your 
           // sites footer.
-          '& > *:last-child:has(.w-full)': {
-            marginBottom: theme('spacing.12') * -1,
+          '& > *:last-child.w-full': {
+            marginBottom: `-${theme('spacing.12')}`,
           },
         },
         [`@media (min-width: ${theme('screens.md')})`]: {
@@ -125,8 +112,8 @@ module.exports = {
             rowGap: theme('spacing.16'),
             paddingTop: theme('spacing.16'),
             paddingBottom: theme('spacing.16'),
-            '& > *:last-child:has(.w-full)': {
-              marginBottom: theme('spacing.16') * -1,
+            '& > *:last-child.w-full': {
+              marginBottom: `-${theme('spacing.16')}`,
             },
           },
         },
@@ -134,16 +121,16 @@ module.exports = {
           // Larger horizontal padding on larger screens.
           '.fluid-container': {
             // Use safe-area-inset together with default padding for Apple devices with a notch.
-            paddingLeft: 'calc(env(safe-area-inset-left, 0rem) + ' + theme('padding.12') + ')',
-            paddingRight: 'calc(env(safe-area-inset-right, 0rem) + ' + theme('padding.12') + ')',
+            paddingLeft: `calc(env(safe-area-inset-left, 0rem) + ${theme('padding.12')})`,
+            paddingRight: `calc(env(safe-area-inset-right, 0rem) + ${theme('padding.12')})`,
           },
           // Larger vertical spacing between blocks on larger screens.
           '.outer-grid': {
             rowGap: theme('spacing.24'),
             paddingTop: theme('spacing.24'),
             paddingBottom: theme('spacing.24'),
-            '& > *:last-child:has(.w-full)': {
-              marginBottom: theme('spacing.24') * -1,
+            '& > *:last-child.w-full': {
+              marginBottom: `-${theme('spacing.24')}`,
             },
           },
         },

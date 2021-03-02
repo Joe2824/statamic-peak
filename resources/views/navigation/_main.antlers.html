@@ -2,7 +2,7 @@
 
 {{# The desktop navigation. Hidden on smaller screen. Shown from md and up. #}}
 <nav class="hidden md:block">
-    <ul class="flex space-x-8">
+    <ul class="flex items-center space-x-8">
         {{ nav:main max_depth="2" include_home="true" }}
             <li
                 {{ if children }}
@@ -14,7 +14,7 @@
                     class="flex items-center font-bold text-xs uppercase tracking-wide hover:text-primary-600 {{ is_current || is_parent ? 'text-primary-600' : 'text-neutral-800' }}"
                     {{ if children }}
                         href="#"
-                        @click.prevent="subnavOpen = true"
+                        @click.prevent="subnavOpen = !subnavOpen"
                         @click.away="subnavOpen = false"
                     {{ else }}
                         href="{{ url }}"

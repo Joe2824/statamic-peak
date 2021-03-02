@@ -18,21 +18,17 @@ module.exports = {
     require('./tailwind.config.peak.js'),
     require('./tailwind.config.site.js'),
   ],
-  // Opt in to future Tailwind features.
-  future: {  },
-  // Dark mode
-  dark: 'media', // or 'class'
-  experimental: {
-    darkModeVariant: false,
-    // Add extra breakpoint.
-    additionalBreakpoint: false,
-  },
+  // Uncomment the next line to enable Dark mode using `prefers-color-scheme`.
+  // darkMode: 'media', 
+  // Or use the next line to use darkmode by adding a class to your html.
+  // darkMode: 'class',
   // Configure Purge CSS.
   purge: {
     content: [
       './resources/views/**/*.html',
       './resources/js/**/*.js',
     ],
+    layers: ['components', 'utilities'],
     options: {
       // Always remove the following classes during purging.
       blocklist: ['?',],
